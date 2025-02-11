@@ -41,6 +41,7 @@ pip install -r requirements.txt
 **Запуск тестов**
 
 pytest tests/ --alluredir=reports/
+
 allure serve reports/
 
 ## **Тест-кейсы**
