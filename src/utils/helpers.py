@@ -1,3 +1,2 @@
-def validate_positive_integer(value, name):
-    if not isinstance(value, int) or value <= 0:
-        raise ValueError(f"{name} должен быть положительным целым числом")
+def validate_direction(direction):
+    return direction in ["north", "south", "east", "west"]

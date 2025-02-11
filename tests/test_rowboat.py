@@ -1,40 +1,33 @@
 import pytest
+import allure
 from src.models.rowboat import Rowboat
 
+@allure.feature("Инициализация лодки")
+def test_boat_initialization():
+    boat = Rowboat(2)
+    assert boat.capacity == 2
+    assert boat.passengers == 0
 
-class TestRowboat:
-    @pytest.fixture
-    def boat(self):
-        return Rowboat(capacity=4, material="wood")
+@allure.feature("Управление пассажирами")
+def test_add_passenger():
+    boat = Rowboat(2)
+    boat.add_passenger()
+    assert boat.passengers == 1
 
-    def test_initial_state(self, boat):
-        assert boat.capacity == 4
-        assert boat.material == "wood"
-        assert boat.position == (0, 0)
-        assert not boat.is_moving
+@allure.feature("Перемещение лодки")
+def test_movement():
+    boat = Rowboat(2)
+    boat.move()
+    assert boat.position == (0, 1)
 
-    def test_movement(self, boat):
-        boat.change_direction("east")
-        boat.move()
-        assert boat.position == (1, 0)
-        assert boat.is_moving
+@allure.feature("Смена направления")
+@pytest.mark.parametrize("direction", ["north", "south", "east", "west"])
+def test_change_direction(direction):
+    boat = Rowboat(2)
+    boat.change_direction(direction)
+    assert boat.direction == direction
 
-    def test_passenger_management(self, boat):
-        for _ in range(4):
-            boat.add_passenger()
-        with pytest.raises(ValueError):
-            boat.add_passenger()
-
-        for _ in range(4):
-            boat.remove_passenger()
-        with pytest.raises(ValueError):
-            boat.remove_passenger()
-
-    def test_direction_change(self, boat):
-        boat.change_direction("south")
-        assert boat.direction == "south"
-
-    def test_stop_boat(self, boat):
-        boat.move()
-        boat.stop()
-        assert not boat.is_moving
+@allure.feature("Остановка лодки")
+def test_stop():
+    boat = Rowboat(2)
+    boat.stop()

@@ -1,4 +1,4 @@
-Boat API
+# Boat API
 
 Описание проекта
 
@@ -15,21 +15,24 @@ boat_api/
 │   │   ├── rowboat.py      # Класс весельной лодки
 │   ├── utils/
 │   │   ├── helpers.py      # Вспомогательные функции
+│   │   ├── logger.py       # Настройка логирования
 │
 ├── tests/
 │   ├── test_rowboat.py     # Тесты для весельной лодки
 │   ├── conftest.py         # Фикстуры для тестов
 │
+├── reports/                # Папка для Allure отчетов
+│
 ├── requirements.txt        # Список зависимостей
 ├── README.md               # Описание проекта
-└── setup.py                # Конфигурация установки
+└── pyproject.toml          # Конфигурация установки (замена setup.py)
 </code></pre>
 
 ## **Установка**
 
 **Клонировать репозиторий:**
 
-git clone <repository_url>
+git clone https://github.com/Checamaro/boat_api
 
 **Установить зависимости:**
 
@@ -37,7 +40,8 @@ pip install -r requirements.txt
 
 **Запуск тестов**
 
-pytest tests/
+pytest tests/ --alluredir=reports/
+allure serve reports/
 
 ## **Тест-кейсы**
 
