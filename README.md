@@ -29,7 +29,7 @@ boat_api/
 
 **Клонировать репозиторий:**
 
-git clone <repository_url>
+git clone [<repository_url>](https://github.com/Checamaro/boat_api)
 
 **Установить зависимости:**
 
