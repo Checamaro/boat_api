@@ -12,3 +12,5 @@ def browser():
     driver = webdriver.Chrome(options=options)
     yield driver
     driver.quit()
+
+
