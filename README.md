@@ -55,7 +55,7 @@ boat_api/
 
 ### Запуск API:
 ```bash
-python -m src.api.endpoints
+uvicorn src.api.endpoints:app --host 127.0.0.1 --port 5000 --reload
 ```
 API будет доступно по адресу: [http://127.0.0.1:5000/docs#/](http://127.0.0.1:5000/docs#/)
 
