@@ -1,2 +1,5 @@
 pytest
 allure-pytest
+fastapi
+uvicorn
+requests

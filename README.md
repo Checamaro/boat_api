@@ -16,16 +16,18 @@ boat_api/
 │   ├── utils/
 │   │   ├── helpers.py      # Вспомогательные функции
 │   │   ├── logger.py       # Настройка логирования
+│   ├── api/
+│   │   ├── main.py         # API для работы с лодкой
 │
 ├── tests/
-│   ├── test_rowboat.py     # Тесты для весельной лодки
+│   ├── test_api.py         # Тесты для API лодки
 │   ├── conftest.py         # Фикстуры для тестов
 │
 ├── reports/                # Папка для Allure отчетов
 │
 ├── requirements.txt        # Список зависимостей
 ├── README.md               # Описание проекта
-└── pyproject.toml          # Конфигурация установки (замена setup.py)
+└── pyproject.toml          # Конфигурация установки
 </code></pre>
 
 ## **Установка**
@@ -38,9 +40,27 @@ git clone https://github.com/Checamaro/boat_api
 
 pip install -r requirements.txt
 
+**Запуск API локально**
+
+Перейти в корневую директорию проекта.
+
+Запустить сервер FastAPI:
+
+uvicorn src.api.main:app --reload
+
+API будет доступен по адресу: http://127.0.0.1:8000
+
+Документация API доступна по адресу:
+
+Swagger UI: http://127.0.0.1:8000/docs
+
+ReDoc: http://127.0.0.1:8000/redoc
+
 **Запуск тестов**
 
 pytest tests/ --alluredir=reports/
+
+Открыть отчет локально
 
 allure serve reports/
 
