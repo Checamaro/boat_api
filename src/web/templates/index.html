@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Управление лодкой</title>
+</head>
+<body>
+    <h1>Управление лодкой</h1>
+    <button id="moveForward">Move Forward</button>
+    <button id="moveBackward">Move Backward</button>
+    <button id="moveLeft">Move Left</button>
+    <button id="moveRight">Move Right</button>
+    <button id="stopBoat">Stop</button>
+    <button id="addPassenger">Add Passenger</button>
+    <button id="removePassenger">Remove Passenger</button>
+    <h3>Boat Status</h3>
+    <div id="status">
+        <!-- Статус лодки будет отображаться здесь -->
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const BASE_URL = "http://127.0.0.1:5000";
+
+            // Функция для отправки команд на сервер
+            function sendCommand(endpoint) {
+                fetch(`${BASE_URL}${endpoint}`, { method: "POST" })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log("Ответ сервера:", data);
+                        updateStatus();  // Обновляем статус после каждой команды
+                    })
+                    .catch(error => console.error("Ошибка:", error));
+            }
+
+            // Функция для обновления статуса лодки
+            function updateStatus() {
+                fetch(`${BASE_URL}/status`)
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById("status").innerHTML = `
+                            <p>Название: ${data.name}</p>
+                            <p>Вместимость: ${data.capacity}</p>
+                            <p>Число пассажиров: ${data.passengers}</p>
+                            <p>Направление: ${data.direction}</p>
+                            <p>Вёсла: ${data.oars}</p>
+                        `;
+                    })
+                    .catch(error => console.error("Ошибка при получении статуса:", error));
+            }
+
+            // Добавляем обработчики событий для кнопок
+            document.getElementById("moveForward").addEventListener("click", function() {
+                sendCommand("/move/forward");
+            });
+
+            document.getElementById("moveBackward").addEventListener("click", function() {
+                sendCommand("/move/backward");
+            });
+
+            document.getElementById("moveLeft").addEventListener("click", function() {
+                sendCommand("/move/left");
+            });
+
+            document.getElementById("moveRight").addEventListener("click", function() {
+                sendCommand("/move/right");
+            });
+
+            document.getElementById("stopBoat").addEventListener("click", function() {
+                sendCommand("/stop");
+            });
+
+            document.getElementById("addPassenger").addEventListener("click", function() {
+                sendCommand("/passenger/add");
+            });
+
+            document.getElementById("removePassenger").addEventListener("click", function() {
+                sendCommand("/passenger/remove");
+            });
+
+            // Изначально загружаем статус лодки при загрузке страницы
+            updateStatus();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+pytest
+allure-pytest
+fastapi
+uvicorn
+requests
+flask
+python-multipart
