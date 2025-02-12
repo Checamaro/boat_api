@@ -58,7 +58,7 @@ API будет доступен по адресу: **[http://127.0.0.1:8000](htt
 
 ### 1. Запуск автотестов
 ```sh
-pytest tests/ --alluredir=reports/
+pytest tests/ --alluredir=reports/ -s -v
 ```
 
 ### 2. Открытие отчёта Allure
