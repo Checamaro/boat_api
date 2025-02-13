@@ -34,7 +34,7 @@ boat_api/
 
 ### 1. Клонирование репозитория
 ```sh
-git clone https://github.com/Checamaro/boat_api
+https://github.com/Checamaro/boat_api.git
 ```
 
 ### 2. Установка зависимостей
